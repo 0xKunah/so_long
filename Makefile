@@ -6,7 +6,7 @@
 #    By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 13:28:19 by dbiguene          #+#    #+#              #
-#    Updated: 2022/12/15 14:03:04 by dbiguene         ###   ########lyon.fr    #
+#    Updated: 2022/12/16 13:14:45 by dbiguene         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -123,7 +123,7 @@ norm			:
 					norminette ${SRCS_LIST:%=${DIR_SRCS}%} ${HEADERS}
 
 debug			:
-					gcc -g ${CFLAGS} -I ${DIR_HEADERS}. ${SRCS_LIST:%=${DIR_SRCS}%} ${LIBFT} ${SLX} -o ${NAME}
+					gcc -g ${CFLAGS} -I ${DIR_HEADERS}. ${SRCS_LIST:%=${DIR_SRCS}%} ${FRAMEWORKS} ${LIBFT} ${SLX} -o ${NAME}
 
 .PHONY:	all clean fclean re run norm clean_libs debug opti
-#.SILENT:
+.SILENT:

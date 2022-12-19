@@ -6,12 +6,14 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:25:28 by dbiguene          #+#    #+#             */
-/*   Updated: 2022/12/07 16:28:06 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2022/12/16 14:01:39 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASSETS_PATH_H
 # define ASSETS_PATH_H
+
+# define ASSET_SIZE 32
 
 /* ---- Normal floors ---- */
 

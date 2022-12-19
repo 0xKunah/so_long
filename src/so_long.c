@@ -6,13 +6,14 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:52:08 by dbiguene          #+#    #+#             */
-/*   Updated: 2022/12/15 14:45:50 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2022/12/16 14:26:55 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/so_long.h"
 #include "../include/assets_path.h"
 #include "../slx/include/slx.h"
+#include "../libft/includes/io.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -22,7 +23,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-#include "../libft/includes/io.h"
 
 t_slx_coords	create_coords(int x, int y)
 {
@@ -35,9 +35,9 @@ t_slx_coords	create_coords(int x, int y)
 
 int	is_wall(char **map, int i, int j)
 {
-	if (map[i])
+	if (i >= 0 && map[i])
 	{
-		if (map[i][j])
+		if (j >= 0 && map[i][j])
 			if (map[i][j] == '1')
 				return (1);
 		return (0);
@@ -45,38 +45,78 @@ int	is_wall(char **map, int i, int j)
 	return (0);
 }
 
-void	draw_wall(char **map, int i, int j)
+void	draw_side_wall(int i, int j)
 {
-	t_slx_image	img;
-
-	if (!is_wall(map, i + 1, j) && !is_wall(map, i - 1, j)
-		&& !is_wall(map, i, j + 1) && !is_wall(map, i, j - 1))
-		img = slx_load_xpm(LITTLE_HOLE);
-	else if (is_wall(map, i + 1, j) && is_wall(map, i - 1, j))
+	if (j > 0)
 	{
-		if (map[i][j - 1])
-			img = slx_load_xpm(WALL_R);
+		if (i == 1)
+			slx_display_stacked_xpm(FLOOR_CRACK_TR, WALL_R,
+				j * ASSET_SIZE, i * ASSET_SIZE);
 		else
-			img = slx_load_xpm(WALL_L);
+			slx_display_stacked_xpm(FLOOR_CRACK_R, WALL_R,
+				j * ASSET_SIZE, i * ASSET_SIZE);
 	}
 	else
-		img = slx_load_xpm(WALL_TB);
-	slx_display_image(img.data, create_coords(j * 32, i * 32));
+	{
+		if (i == 1)
+			slx_display_stacked_xpm(FLOOR_CRACK_TL, WALL_L,
+				j * ASSET_SIZE, i * ASSET_SIZE);
+		else
+			slx_display_stacked_xpm(FLOOR_CRACK_L, WALL_L,
+				j * ASSET_SIZE, i * ASSET_SIZE);
+	}
 }
 
-void	display_map(char **map)
+void	draw_wall(t_game game, int i, int j)
+{
+	if (!is_wall(game.map, i + 1, j) && !is_wall(game.map, i - 1, j)
+		&& !is_wall(game.map, i, j + 1) && !is_wall(game.map, i, j - 1))
+		slx_display_xpm(LITTLE_HOLE, j * ASSET_SIZE, i * ASSET_SIZE);
+	else if (i > 0 && i < game.map_size.y - 1
+		&& j > 0 && j < game.map_size.x - 1)
+		slx_display_stacked_xpm(BASIC_FLOOR, DECOR_BIG_ROCK,
+			j * ASSET_SIZE, i * ASSET_SIZE);
+	else if (is_wall(game.map, i + 1, j) && is_wall(game.map, i - 1, j))
+		draw_side_wall(i, j);
+	else
+	{
+		slx_display_xpm(WALL_TB, j * ASSET_SIZE, i * ASSET_SIZE);
+		if (j == 0 && i == 0)
+			slx_display_xpm(WALL_L, j * ASSET_SIZE, i * ASSET_SIZE);
+		else if (j == game.map_size.x - 1 && i == 0)
+			slx_display_xpm(WALL_R, j * ASSET_SIZE, i * ASSET_SIZE);
+	}
+}
+
+void	draw_floor(t_game game, int i, int j)
+{
+	if (is_wall(game.map, i - 1, j) && is_wall(game.map, i, j))
+		slx_display_xpm(FLOOR_CRACK_TL, i * ASSET_SIZE, j * ASSET_SIZE);
+	else if (is_wall(game.map, i, j - 1))
+		slx_display_xpm(FLOOR_CRACK_T, i * ASSET_SIZE, j * ASSET_SIZE);
+	else
+		slx_display_xpm(BASIC_FLOOR, i * ASSET_SIZE, j * ASSET_SIZE);
+}
+
+void	display_map(t_game game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (map[i])
+	while (game.map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (game.map[i][j])
 		{
-			if (map[i][j] == '1')
-				draw_wall(map, i, j);
+			if (game.map[i][j] == '1')
+				draw_wall(game, i, j);
+			else
+			{
+				draw_floor(game, i, j);
+				if (game.map[i][j] == 'C')
+					slx_display_xpm(COLLECTIBLE, j * ASSET_SIZE, i * ASSET_SIZE);
+			}
 			j++;
 		}
 		i++;
@@ -95,9 +135,9 @@ int	main(int argc, char **argv)
 		ft_printf("%i: %s\n", i, game.map[i]);
 		i++;
 	}
-	slx_init(game.map_size.x * 32, game.map_size.y * 32, "./so_long");
 	check_map_validity(game.map);
-	display_map(game.map);
+	slx_init(game.map_size.x * ASSET_SIZE, game.map_size.y * ASSET_SIZE, "./so_long");
+	display_map(game);
 	slx_loop();
 	return (argc - argc);
 }

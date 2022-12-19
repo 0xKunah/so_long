@@ -6,11 +6,14 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 12:09:29 by dbiguene          #+#    #+#             */
-/*   Updated: 2022/12/15 13:46:37 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2022/12/16 13:50:15 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/slx.h"
+
+static void	*g_mlx_instance;
+static void	*g_mlx_window;
 
 void	slx_init(int width, int height, char *name)
 {
@@ -22,3 +25,24 @@ void	slx_loop(void)
 {
 	mlx_loop(g_mlx_instance);
 }
+
+void	*slx_get_instance(void)
+{
+	return (g_mlx_instance);
+}
+
+void	*slx_get_window(void)
+{
+	return (g_mlx_window);
+}
+
+t_slx_coords	slx_create_coords(int x, int y)
+{
+	t_slx_coords	coords;
+
+	coords.x = x;
+	coords.y = y;
+	return (coords);
+}
+
+

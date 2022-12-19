@@ -6,7 +6,7 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 12:05:37 by dbiguene          #+#    #+#             */
-/*   Updated: 2022/12/15 13:42:51 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2022/12/16 14:06:04 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,15 @@ typedef struct s_slx_coords {
 }		t_slx_coords;
 
 /* ---- Global variables ---- */
-void	*g_mlx_instance;
-void	*g_mlx_window;
 
-void		slx_init(int width, int height, char *name);
-void		slx_display_image(void *img, t_slx_coords coords);
-void		slx_loop(void);
-t_slx_image	slx_load_xpm(char *file);
-
+void			slx_init(int width, int height, char *name);
+void			slx_display_image(void *img, t_slx_coords coords);
+void			slx_loop(void);
+t_slx_image		slx_load_xpm(char *file);
+t_slx_coords	slx_create_coords(int x, int y);
+void			*slx_get_instance(void);
+void			*slx_get_window(void);
+void			slx_display_xpm(char *file, int x, int y);
+void			slx_display_stacked_xpm(char *first_layer, char *second_layer,
+					int x, int y);
 #endif
