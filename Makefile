@@ -6,7 +6,7 @@
 #    By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 13:28:19 by dbiguene          #+#    #+#              #
-#    Updated: 2022/12/16 13:14:45 by dbiguene         ###   ########lyon.fr    #
+#    Updated: 2022/12/15 14:03:04 by dbiguene         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,19 @@ CC				=	cc
 
 CFLAGS			=	-Wall -Wextra -Werror
 
-FRAMEWORKS		=	-framework OpenGL -framework AppKit
+FRAMEWORKS		=	-Llibft -Lslx -lft -lslx
+
+# ---- OS Variables ---- #
+
+UNAME			=	$(shell uname -s)
+
+ifeq ($(UNAME), Linux)
+FRAMEWORKS		+= -lXext -lX11 -lm -lz
+endif
+
+ifeq ($(UNAME), Darwin)
+FRAMEWORKS		+=	-framework OpenGL -framework AppKit
+endif
 
 # ---- Commands ---- #
 
@@ -68,24 +80,24 @@ opti			:
 # ---- Variables Rules ---- #
 
 ${NAME}			:	${OBJS} ${HEADERS} ${LIBFT} ${SLX}
-					${CC} ${CFLAGS} -I ${DIR_HEADERS} ${FRAMEWORKS} ${SLX} ${LIBFT} ${OBJS} -o ${NAME}
-					@echo "\033[0;32m [so_long] : ✔️ Successfully built so_long executable\033[1;36m ${NAME} !\033[0;37m"
+					${CC} ${CFLAGS} -I ${DIR_HEADERS} ${OBJS} ${FRAMEWORKS} -o ${NAME}
+					@echo "\033[0;32m [so_long] : ✔️ Successfully built so_long executable\033[1;36m ${NAME}\033[0;32m for \033[1;36m${UNAME} !\033[0;00m"
 # ---- Lib rules ---- #
 
 ${SLX}			:
 					make -C slx
-					@echo "\033[0;32m [so_long/slx] : ✔️ Successfully built minilibx\033[1;36m ${@} !\033[0;37m"
+					@echo "\033[0;32m [so_long/slx] : ✔️ Successfully built minilibx\033[1;36m ${@} !\033[0;00m"
 
 ${LIBFT}		:
 					make -C libft
-					@echo "\033[0;32m [so_long/libft] : ✔️ Successfully built libft\033[1;36m ${@} !\033[0;37m"
+					@echo "\033[0;32m [so_long/libft] : ✔️ Successfully built libft\033[1;36m ${@} !\033[0;00m"
 
 clean_libs		:
 ifeq ($(RE_LIBS), 1)
 					make -C slx clean
-					@echo "\033[0;31m [so_long/slx] : ✔️ Successfully cleaned superlibx\033[1;36m slx/ !\033[0;37m"
+					@echo "\033[0;31m [so_long/slx] : ✔️ Successfully cleaned superlibx\033[1;36m slx/ !\033[0;00m"
 					make -C libft fclean
-					@echo "\033[0;31m [so_long/libft] : ✔️ Successfully cleaned libft\033[1;36m libft/ !\033[0;37m"
+					@echo "\033[0;31m [so_long/libft] : ✔️ Successfully cleaned libft\033[1;36m libft/ !\033[0;00m"
 endif
 
 # ---- Compiled Rules ---- #
@@ -93,37 +105,37 @@ endif
 ${OBJS}			:	| ${DIR_OBJS}
 
 ${DIR_OBJS}%.o	:	${DIR_SRCS}%.c ${HEADERS}
-					${CC} ${CFLAGS} -I ${DIR_HEADERS}. -c $< -o $@
+					${CC} ${CFLAGS} -I ${DIR_HEADERS} -c $< -o $@
 
 ${DIR_OBJS}		:
 					${MKDIR} ${DIR_OBJS}
-					@echo "\033[0;32m [so_long/bin] : ✔️ Successfully created bin directory\033[1;36m ${DIR_OBJS} !\033[0;37m"
+					@echo "\033[0;32m [so_long/bin] : ✔️ Successfully created bin directory\033[1;36m ${DIR_OBJS} !\033[0;00m"
 
 # ---- Usual Rules ---- #
 
 clean			:
 					${RM} ${OBJS}
-					@echo "\033[0;31m [so_long/bin] : ✔️ Successfully cleaned bin directories\033[1;36m bin/ !\033[0;37m"
+					@echo "\033[0;31m [so_long/bin] : ✔️ Successfully cleaned bin directories\033[1;36m bin/ !\033[0;00m"
 
 fclean			:	clean clean_libs
 					${RM} ${NAME}
-					@echo "\033[0;31m [so_long] : ✔️ Successfully deleted executable\033[1;36m ${NAME} !\033[0;37m"
+					@echo "\033[0;31m [so_long] : ✔️ Successfully deleted executable\033[1;36m ${NAME} !\033[0;00m"
 					${RM} ${SLX}
-					@echo "\033[0;31m [so_long] : ✔️ Successfully deleted slx lib file\033[1;36m ${SLX} !\033[0;37m"
+					@echo "\033[0;31m [so_long] : ✔️ Successfully deleted slx lib file\033[1;36m ${SLX} !\033[0;00m"
 
 re				:	fclean all
 
 run				:	all
 					./${NAME}
 
-rerun			:	re
-					./${NAME}
+test			:	${NAME}
+					./${NAME} map.txt
 
 norm			:
 					norminette ${SRCS_LIST:%=${DIR_SRCS}%} ${HEADERS}
 
 debug			:
-					gcc -g ${CFLAGS} -I ${DIR_HEADERS}. ${SRCS_LIST:%=${DIR_SRCS}%} ${FRAMEWORKS} ${LIBFT} ${SLX} -o ${NAME}
+					gcc -g ${CFLAGS} -I ${DIR_HEADERS}. ${SRCS_LIST:%=${DIR_SRCS}%} ${LIBFT} ${SLX} -o ${NAME}
 
-.PHONY:	all clean fclean re run norm clean_libs debug opti
+.PHONY:	all clean fclean re run test norm clean_libs debug opti
 .SILENT:

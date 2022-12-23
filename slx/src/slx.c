@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/slx.h"
+#include <stdlib.h>
 
 static void	*g_mlx_instance;
 static void	*g_mlx_window;
@@ -45,4 +46,11 @@ t_slx_coords	slx_create_coords(int x, int y)
 	return (coords);
 }
 
-
+void	slx_kill(void)
+{
+	slx_destroy_images();
+	mlx_clear_window(slx_get_instance(), slx_get_window());
+	mlx_destroy_window(slx_get_instance(), slx_get_window());
+	free(g_mlx_instance);
+	exit(0);
+}

@@ -26,7 +26,18 @@ DIR_HEADERS		=	include/
 
 # ---- Libs variables ---- #
 
-MLX_PATH		=	./minilibx_macos/
+
+UNAME			=	$(shell uname -s)
+
+ifeq ($(UNAME), Linux)
+OS				=	linux
+endif
+
+ifeq ($(UNAME), Darwin)
+OS				=	macos
+endif
+
+MLX_PATH		=	./mlx/${OS}/
 
 MLX				=	${MLX_PATH}libmlx.a
 
@@ -108,4 +119,4 @@ norm			:
 					norminette ${SRCS_LIST:%=${DIR_SRCS}%} ${HEADERS}
 
 .PHONY:	all clean fclean re norm clean_libs opti
-#.SILENT:
+.SILENT:

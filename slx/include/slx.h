@@ -12,7 +12,7 @@
 
 #ifndef SLX_H
 # define SLX_H
-# include "../minilibx_macos/mlx.h"
+# include "../mlx/macos/mlx.h"
 
 
 /* ---- Type declarations ---- */
@@ -39,4 +39,6 @@ void			*slx_get_window(void);
 void			slx_display_xpm(char *file, int x, int y);
 void			slx_display_stacked_xpm(char *first_layer, char *second_layer,
 					int x, int y);
+void			slx_destroy_images();
+void			slx_kill();
 #endif

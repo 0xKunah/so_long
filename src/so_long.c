@@ -14,6 +14,7 @@
 #include "../include/assets_path.h"
 #include "../slx/include/slx.h"
 #include "../libft/includes/io.h"
+#include "../libft/includes/memory.h"
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -139,5 +140,7 @@ int	main(int argc, char **argv)
 	slx_init(game.map_size.x * ASSET_SIZE, game.map_size.y * ASSET_SIZE, "./so_long");
 	display_map(game);
 	slx_loop();
+	ft_free_array((void **)game.map);
+	slx_kill();
 	return (argc - argc);
 }
