@@ -6,7 +6,7 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:25:28 by dbiguene          #+#    #+#             */
-/*   Updated: 2022/12/16 14:01:39 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2023/01/05 13:57:11 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,22 @@
 /* ==== Collectible ==== */
 
 # define COLLECTIBLE DECOR_CRYSTAL
+
+/* ==== Player ==== */
+# define PLAYER_FRONT		"./assets/character/front.xpm"
+# define PLAYER_FRONT_LEFT	"./assets/character/front_left.xpm"
+# define PLAYER_FRONT_RIGHT	"./assets/character/front_right.xpm"
+
+# define PLAYER_LEFT		"./assets/character/left.xpm"
+# define PLAYER_LEFT_LEFT	"./assets/character/left_left.xpm"
+# define PLAYER_LEFT_RIGHT	"./assets/character/left_right.xpm"
+
+# define PLAYER_RIGHT		"./assets/character/right.xpm"
+# define PLAYER_RIGHT_LEFT	"./assets/character/right_left.xpm"
+# define PLAYER_RIGHT_RIGHT	"./assets/character/right_right.xpm"
+
+# define PLAYER_BACK		"./assets/character/back.xpm"
+# define PLAYER_BACK_LEFT	"./assets/character/back_left.xpm"
+# define PLAYER_BACK_RIGHT	"./assets/character/back_right.xpm"
 
 #endif

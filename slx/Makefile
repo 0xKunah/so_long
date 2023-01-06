@@ -6,7 +6,7 @@
 #    By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 13:28:19 by dbiguene          #+#    #+#              #
-#    Updated: 2022/12/15 14:07:20 by dbiguene         ###   ########lyon.fr    #
+#    Updated: 2023/01/05 12:42:34 by dbiguene         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,10 +44,13 @@ MLX				=	${MLX_PATH}libmlx.a
 
 # ---- Files ---- #
 
-HEADERS_LIST	=	slx.h
+HEADERS_LIST	=	slx.h		types.h			\
+					coords.h	hook.h			\
+					images.h
 
 SRCS_LIST		=	slx.c		displayers.c	\
-					loaders.c
+					loaders.c	getters.c		\
+					coords.c
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 

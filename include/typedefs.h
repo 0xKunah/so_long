@@ -13,6 +13,8 @@
 #ifndef TYPEDEFS_H
 # define TYPEDEFS_H
 
+# include "../slx/include/slx.h"
+
 typedef struct s_data {
 	void	*img;
 	char	*addr;
@@ -21,14 +23,10 @@ typedef struct s_data {
 	int		endian;
 }			t_data;
 
-typedef struct s_coords {
-	int	x;
-	int	y;
-}		t_coords;
-
 typedef struct s_game {
-	char		**map;
-	t_coords	map_size;
+	char			**map;
+	t_slx_keys		keys;
+	t_slx_coords	map_size;
 }				t_game;
 
 #endif

@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   types.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 16:52:19 by dbiguene          #+#    #+#             */
-/*   Updated: 2023/01/05 15:55:20 by dbiguene         ###   ########lyon.fr   */
+/*   Created: 2023/01/06 15:57:00 by dbiguene          #+#    #+#             */
+/*   Updated: 2023/01/06 15:57:00 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+#ifndef TYPES_H
+# define TYPES_H
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+typedef struct s_slx_image {
+	int		width;
+	int		height;
+	void	*data;
+}			t_slx_image;
 
-# include "typedefs.h"
-# include "../slx/include/slx.h"
+typedef struct s_slx_coords {
+	int	x;
+	int	y;
+}		t_slx_coords;
 
-t_game	parse_map(char *path);
-void	check_map_validity(char **map);
+typedef struct s_slx_instance
+{
+	void	*mlx;
+	void	*win;
+}			t_slx_instance;
 
-void	draw_side_wall(int i, int j);
-void	draw_wall(t_game game, int i, int j);
-void	draw_floor(t_game game, int i, int j);
-void	draw_map(t_game game);
-int		is_wall(char **map, int i, int j);
+typedef struct s_slx_file
+{
+	char				*name;
+	t_slx_image			content;
+	struct s_slx_file	*next;
+}						t_slx_file;
 
-void	check_map_solvability(t_game game);
 #endif

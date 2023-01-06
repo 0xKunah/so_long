@@ -6,7 +6,7 @@
 #    By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/06 13:28:19 by dbiguene          #+#    #+#              #
-#    Updated: 2022/12/15 14:03:04 by dbiguene         ###   ########lyon.fr    #
+#    Updated: 2023/01/05 16:04:04 by dbiguene         ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ HEADERS_LIST	=	so_long.h	assets_path.h	\
 					typedefs.h
 
 SRCS_LIST		=	so_long.c		parser.c	\
-					map_checker.c
+					map_checker.c	drawers.c	\
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
@@ -134,8 +134,9 @@ test			:	${NAME}
 norm			:
 					norminette ${SRCS_LIST:%=${DIR_SRCS}%} ${HEADERS}
 
-debug			:
-					gcc -g ${CFLAGS} -I ${DIR_HEADERS}. ${SRCS_LIST:%=${DIR_SRCS}%} ${LIBFT} ${SLX} -o ${NAME}
+debug			:	${OBJS} ${HEADERS} ${LIBFT} ${SLX}
+					gcc -g ${CFLAGS} -I ${DIR_HEADERS}. ${SRCS_LIST:%=${DIR_SRCS}%} ${FRAMEWORKS} -o ${NAME}
+					@echo "\033[0;32m [so_long] : ✔️ Successfully built so_long debug executable\033[1;36m ${NAME}\033[0;32m for \033[1;36m${UNAME} !\033[0;00m"
 
 .PHONY:	all clean fclean re run test norm clean_libs debug opti
 .SILENT:

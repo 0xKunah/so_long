@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   images.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 16:52:19 by dbiguene          #+#    #+#             */
-/*   Updated: 2023/01/05 15:55:20 by dbiguene         ###   ########lyon.fr   */
+/*   Created: 2023/01/06 15:57:00 by dbiguene          #+#    #+#             */
+/*   Updated: 2023/01/06 15:57:00 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+#ifndef IMAGES_H
+# define IMAGES_H
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-
-# include "typedefs.h"
-# include "../slx/include/slx.h"
-
-t_game	parse_map(char *path);
-void	check_map_validity(char **map);
-
-void	draw_side_wall(int i, int j);
-void	draw_wall(t_game game, int i, int j);
-void	draw_floor(t_game game, int i, int j);
-void	draw_map(t_game game);
-int		is_wall(char **map, int i, int j);
-
-void	check_map_solvability(t_game game);
+t_slx_image		slx_load_xpm(char *file);
+void			slx_destroy_images(void);
+void			slx_display_xpm(char *file, int x, int y);
+void			slx_display_image(void *img, t_slx_coords coords);
+void			slx_display_stacked_xpm(char *first_layer, char *second_layer,
+					int x, int y);
 #endif

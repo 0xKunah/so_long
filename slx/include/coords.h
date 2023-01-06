@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   coords.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 16:52:19 by dbiguene          #+#    #+#             */
-/*   Updated: 2023/01/05 15:55:20 by dbiguene         ###   ########lyon.fr   */
+/*   Created: 2023/01/06 15:58:00 by dbiguene          #+#    #+#             */
+/*   Updated: 2023/01/06 15:58:00 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
+#ifndef COORDS_H
+# define COORDS_H
+# include "types.h"
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+t_slx_coords	slx_create_coords(int x, int y);
 
-# include "typedefs.h"
-# include "../slx/include/slx.h"
-
-t_game	parse_map(char *path);
-void	check_map_validity(char **map);
-
-void	draw_side_wall(int i, int j);
-void	draw_wall(t_game game, int i, int j);
-void	draw_floor(t_game game, int i, int j);
-void	draw_map(t_game game);
-int		is_wall(char **map, int i, int j);
-
-void	check_map_solvability(t_game game);
 #endif

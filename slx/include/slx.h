@@ -13,32 +13,14 @@
 #ifndef SLX_H
 # define SLX_H
 # include "../mlx/macos/mlx.h"
-
-
-/* ---- Type declarations ---- */
-typedef struct s_slx_image {
-	int		width;
-	int		height;
-	void	*data;
-}			t_slx_image;
-
-typedef struct s_slx_coords {
-	int	x;
-	int	y;
-}		t_slx_coords;
-
-/* ---- Global variables ---- */
+# include "types.h"
+# include "coords.h"
+# include "hook.h"
+# include "images.h"
 
 void			slx_init(int width, int height, char *name);
-void			slx_display_image(void *img, t_slx_coords coords);
+t_slx_instance	slx_get_instance(void);
 void			slx_loop(void);
-t_slx_image		slx_load_xpm(char *file);
-t_slx_coords	slx_create_coords(int x, int y);
-void			*slx_get_instance(void);
-void			*slx_get_window(void);
-void			slx_display_xpm(char *file, int x, int y);
-void			slx_display_stacked_xpm(char *first_layer, char *second_layer,
-					int x, int y);
-void			slx_destroy_images();
-void			slx_kill();
+void			slx_kill(void);
+
 #endif

@@ -14,7 +14,7 @@
 
 void	slx_display_image(void *img, t_slx_coords coords)
 {
-	mlx_put_image_to_window(slx_get_instance(), slx_get_window(),
+	mlx_put_image_to_window(slx_get_instance().mlx, slx_get_instance().win,
 		img, coords.x, coords.y);
 }
 
