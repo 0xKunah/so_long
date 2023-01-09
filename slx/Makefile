@@ -50,7 +50,7 @@ HEADERS_LIST	=	slx.h		types.h			\
 
 SRCS_LIST		=	slx.c		displayers.c	\
 					loaders.c	getters.c		\
-					coords.c
+					coords.c	hook.c
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 

@@ -25,8 +25,16 @@ typedef struct s_data {
 
 typedef struct s_game {
 	char			**map;
-	t_slx_keys		keys;
 	t_slx_coords	map_size;
+	t_slx_coords	player_pos;
+	t_slx_image		player_img;
 }				t_game;
+
+typedef struct s_player_peds {
+	t_slx_image	front;
+	t_slx_image	left;
+	t_slx_image	right;
+	t_slx_image	back;
+}				t_player_peds;
 
 #endif

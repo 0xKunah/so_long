@@ -15,12 +15,6 @@
 # include "types.h"
 # define MAX_KEY 270
 
-typedef struct s_slx_keys
-{
-	int		list[MAX_KEY];
-	int		pressed;
-}	t_slx_keys;
-
 enum
 {
 	KEY_ESC = 53,
@@ -58,9 +52,8 @@ enum
 	ON_DESTROY = 17
 };
 
-int		key_down(int key, t_slx_keys *keys);
-int		key_up(int key, t_slx_keys *keys);
-int		close_window_hook(t_slx_instance *instance);
-void	slx_hook(t_slx_instance *instance, t_slx_keys *keys);
+int			key_down(int key, int (*handler)(int));
+int			close_hook(void);
+void		slx_hook(int (*handler)(int));
 
 #endif

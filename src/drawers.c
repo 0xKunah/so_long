@@ -15,12 +15,12 @@
 #include "../slx/include/slx.h"
 #include "../libft/includes/memory.h"
 
-int	is_wall(char **map, int i, int j)
+int	is_wall(t_game game, int i, int j)
 {
-	if (i >= 0 && map[i])
+	if (i >= 0 && i < game.map_size.y)
 	{
-		if (j >= 0 && map[i][j])
-			if (map[i][j] == '1')
+		if (j >= 0 && j < game.map_size.x)
+			if (game.map[i][j] == '1')
 				return (1);
 		return (0);
 	}
@@ -47,6 +47,7 @@ void	draw_side_wall(int i, int j)
 			slx_display_stacked_xpm(FLOOR_CRACK_L, WALL_L,
 				j * ASSET_SIZE, i * ASSET_SIZE);
 	}
+	slx_display_xpm(DECOR_BIG_ROCK, j * ASSET_SIZE, i * ASSET_SIZE);
 }
 
 void	draw_wall(t_game game, int i, int j)
@@ -61,7 +62,7 @@ void	draw_wall(t_game game, int i, int j)
 			slx_display_stacked_xpm(BASIC_FLOOR, DECOR_BIG_ROCK,
 				j * ASSET_SIZE, i * ASSET_SIZE);
 	}
-	else if (is_wall(game.map, i + 1, j) && is_wall(game.map, i - 1, j))
+	else if (is_wall(game, i + 1, j) && is_wall(game, i - 1, j))
 		draw_side_wall(i, j);
 	else
 	{
@@ -75,9 +76,9 @@ void	draw_wall(t_game game, int i, int j)
 
 void	draw_floor(t_game game, int i, int j)
 {
-	if (is_wall(game.map, i - 1, j) && is_wall(game.map, i, j))
+	if (is_wall(game, i - 1, j) && is_wall(game, i, j))
 		slx_display_xpm(FLOOR_CRACK_TL, j * ASSET_SIZE, i * ASSET_SIZE);
-	else if (is_wall(game.map, i - 1, j)
+	else if (is_wall(game, i - 1, j)
 		&& !(i - 1 > 0 && i - 1 < game.map_size.y - 1
 			&& j - 1 > 0 && j - 1 < game.map_size.x - 1))
 		slx_display_xpm(FLOOR_CRACK_T, j * ASSET_SIZE, i * ASSET_SIZE);
@@ -106,9 +107,6 @@ void	draw_map(t_game game)
 						j * ASSET_SIZE, i * ASSET_SIZE);
 				else if (game.map[i][j] == 'E')
 					slx_display_xpm(LITTLE_HOLE,
-						j * ASSET_SIZE, i * ASSET_SIZE);
-				else if (game.map[i][j] == 'P')
-					slx_display_xpm(PLAYER_FRONT,
 						j * ASSET_SIZE, i * ASSET_SIZE);
 			}
 			j++;

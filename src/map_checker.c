@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../libft/includes/string.h"
+#include "../libft/includes/memory.h"
 #include "../libft/includes/io.h"
 #include "../include/so_long.h"
 #include <stdio.h>
@@ -98,4 +99,5 @@ void	check_map_solvability(t_game game)
 		}
 		i++;
 	}
+	ft_free_array((void **)map);
 }

@@ -39,6 +39,7 @@ HEADERS_LIST	=	so_long.h	assets_path.h	\
 
 SRCS_LIST		=	so_long.c		parser.c	\
 					map_checker.c	drawers.c	\
+					move.c						\
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
@@ -75,7 +76,7 @@ MKDIR			=	mkdir -p
 all				:	${NAME}
 
 opti			:
-					${MAKE} re RE_LIBS=0 CFLAGS="-Wall -Wextra -Werror -fsanitize=address -O2"
+					${MAKE} ${NAME} CFLAGS="-Wall -Wextra -Werror -fsanitize=address -O2"
 
 # ---- Variables Rules ---- #
 

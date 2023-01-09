@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   slx.h                                              :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/15 12:05:37 by dbiguene          #+#    #+#             */
-/*   Updated: 2022/12/16 14:06:04 by dbiguene         ###   ########lyon.fr   */
+/*   Created: 2023/01/09 15:13:00 by dbiguene          #+#    #+#             */
+/*   Updated: 2023/01/09 15:13:00 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SLX_H
-# define SLX_H
-# include "../mlx/macos/mlx.h"
-# include "types.h"
-# include "coords.h"
-# include "hook.h"
-# include "images.h"
+#include "../include/so_long.h"
+#include "../include/assets_path.h"
+#include <stdio.h>
 
-void			slx_init(int width, int height, char *name);
-t_slx_instance	slx_get_instance(void);
-void			slx_loop(void);
-void			slx_loop_hook(int (*handler)(int));
-void			slx_kill(void);
-
-#endif
+void	move(t_game *game, int key)
+{
+	draw_floor(*game, game->player_pos.y, game->player_pos.x);
+	if (key == KEY_W)
+		game->player_pos.y--;
+	else if (key == KEY_S)
+		game->player_pos.y++;
+	else if (key == KEY_A)
+		game->player_pos.x--;
+	else
+		game->player_pos.x++;
+	display_player(*game);
+}

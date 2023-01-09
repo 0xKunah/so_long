@@ -34,6 +34,6 @@ t_slx_instance	slx_get_instance(void)
 void	slx_kill(void)
 {
 	slx_destroy_images();
-	mlx_clear_window(slx_get_instance().mlx, slx_get_instance().win);
-	mlx_destroy_window(slx_get_instance().mlx, slx_get_instance().win);
+	mlx_destroy_window(g_slx.mlx, g_slx.win);
+	exit(0);
 }

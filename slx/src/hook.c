@@ -11,35 +11,25 @@
 /* ************************************************************************** */
 
 #include "../include/slx.h"
+#include <stddef.h>
+#include <stdio.h>
 
-int	key_down(int key, t_slx_keys *keys)
+int	key_down(int key, int (*handler)(int))
 {
 	if (key < 0 || key >= MAX_KEY)
 		return (-1);
-	keys->list[key] = 1;
-	keys->pressed++;
+	handler(key);
 	return (0);
 }
 
-int	key_up(int key, t_slx_keys *keys)
+int	close_hook(void)
 {
-	if (key < 0 || key >= MAX_KEY)
-		return (-1);
-	keys->list[key] = 0;
-	keys->pressed--;
-	return (0);
-}
-
-int	close_window_hook(t_slx_instance *instance)
-{
-	(void)instance;
 	slx_kill();
 	return (0);
 }
 
-void	slx_hook(t_slx_instance *instance, t_slx_keys *keys)
+void	slx_hook(int (*handler)(int))
 {
-	mlx_hook(instance->win, ON_KEYDOWN, 2, &key_down, keys);
-	mlx_hook(instance->win, ON_KEYUP, 3, &key_up, keys);
-	mlx_hook(instance->win, ON_DESTROY, 0, &close_window_hook, instance);
+	mlx_hook(slx_get_instance().win, ON_KEYDOWN, 2, &key_down, handler);
+	mlx_hook(slx_get_instance().win, ON_DESTROY, 0, &close_hook, NULL);
 }

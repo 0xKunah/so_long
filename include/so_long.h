@@ -23,7 +23,11 @@ void	draw_side_wall(int i, int j);
 void	draw_wall(t_game game, int i, int j);
 void	draw_floor(t_game game, int i, int j);
 void	draw_map(t_game game);
-int		is_wall(char **map, int i, int j);
+int		is_wall(t_game game, int i, int j);
 
 void	check_map_solvability(t_game game);
+
+void	display_player(t_game game);
+void	move(t_game *game, int key);
+
 #endif
