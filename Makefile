@@ -35,11 +35,12 @@ RE_LIBS			=	1
 # ---- Files ---- #
 
 HEADERS_LIST	=	so_long.h	assets_path.h	\
-					typedefs.h
+					typedefs.h	player.h		\
+					map.h
 
 SRCS_LIST		=	so_long.c		parser.c	\
 					map_checker.c	drawers.c	\
-					move.c						\
+					player.c		move.c		\
 
 HEADERS			=	${HEADERS_LIST:%.h=${DIR_HEADERS}%.h}
 
@@ -133,6 +134,11 @@ test			:	${NAME}
 					./${NAME} map.txt
 
 norm			:
+					@echo "\033[0;36m [so_long/libft] : ✔️ Checking norminette for\033[1;36m ${NAME}/libft !\033[0;00m"
+					make -C libft norm
+					@echo "\033[0;36m [so_long/slx] : ✔️ Checking norminette for\033[1;36m ${NAME}/slx !\033[0;00m"
+					make -C slx norm
+					@echo "\033[0;36m [so_long] : ✔️ Checking norminette for\033[1;36m ${NAME} !\033[0;00m"
 					norminette ${SRCS_LIST:%=${DIR_SRCS}%} ${HEADERS}
 
 debug			:	${OBJS} ${HEADERS} ${LIBFT} ${SLX}

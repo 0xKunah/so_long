@@ -27,7 +27,7 @@ static char	**free_tab(char **tab)
 	return (NULL);
 }
 
-char	*ft_strdup_no_nl(char *s)
+static char	*ft_strdup_no_nl(char *s)
 {
 	char	*str;
 	size_t	len;
@@ -41,7 +41,7 @@ char	*ft_strdup_no_nl(char *s)
 	return (str);
 }
 
-char	**list_to_array(t_list *lst)
+static char	**list_to_array(t_list *lst)
 {
 	size_t	size;
 	size_t	i;
@@ -64,6 +64,18 @@ char	**list_to_array(t_list *lst)
 	return (tab);
 }
 
+void	check_extension(char *path)
+{
+	size_t	len;
+
+	len = ft_strlen(path) - 1;
+	if (path[len] == 'r' && path[len - 1] == 'e'
+		&& path[len - 2] == 'b' && path[len - 3] == '.')
+		return ;
+	ft_printf("\033[0;31m[map_error]: Map is not using .ber extension");
+	exit(1);
+}
+
 t_game	parse_map(char *path)
 {
 	t_game	game;
@@ -71,6 +83,7 @@ t_game	parse_map(char *path)
 	char	*line;
 	int		fd;
 
+	check_extension(path);
 	fd = open(path, O_RDONLY);
 	line = get_next_line(fd);
 	lines = NULL;
@@ -84,7 +97,7 @@ t_game	parse_map(char *path)
 	}
 	game.map_size.y = ft_lstsize(lines);
 	game.map = list_to_array(lines);
-	game.map_size.x = ft_strlen(game.map[0]);
+	game.map_size.x = (int)ft_strlen(game.map[0]);
 	ft_lstclear(&lines, free);
 	close(fd);
 	return (game);

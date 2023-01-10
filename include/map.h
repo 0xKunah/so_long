@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 16:52:19 by dbiguene          #+#    #+#             */
-/*   Updated: 2023/01/05 15:55:20 by dbiguene         ###   ########lyon.fr   */
+/*   Created: 2023/01/10 12:21:00 by dbiguene          #+#    #+#             */
+/*   Updated: 2023/01/10 12:21:00 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef MAP_H
+# define MAP_H
 
 # ifndef TYPEDEFS_H
 #  include "typedefs.h"
 # endif
 
-# include "../slx/include/slx.h"
-# include "player.h"
-# include "map.h"
-# include "move.h"
+/* map_checker.c */
+char	*check_line_validity(char *line);
+void	check_map_validity(char **map);
+void	check_map_solvability(t_game game);
 
-t_game			parse_map(char *path);
-t_slx_coords	get_pos(t_game game, char c);
+/* drawers.c */
+int		is_wall(t_game game, int i, int j);
+void	draw_side_wall(int i, int j);
+void	draw_wall(t_game game, int i, int j);
+void	draw_floor(t_game game, int i, int j);
+void	draw_map(t_game game);
 #endif

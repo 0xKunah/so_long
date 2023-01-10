@@ -14,5 +14,5 @@
 # include "types.h"
 
 t_slx_coords	slx_create_coords(int x, int y);
-
+int				slx_compare_coords(t_slx_coords c1, t_slx_coords c2);
 #endif

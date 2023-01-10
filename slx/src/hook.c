@@ -12,7 +12,6 @@
 
 #include "../include/slx.h"
 #include <stddef.h>
-#include <stdio.h>
 
 int	key_down(int key, int (*handler)(int))
 {

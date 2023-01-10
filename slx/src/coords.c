@@ -20,3 +20,8 @@ t_slx_coords	slx_create_coords(int x, int y)
 	coords.y = y;
 	return (coords);
 }
+
+int	slx_compare_coords(t_slx_coords c1, t_slx_coords c2)
+{
+	return (c1.x == c2.x && c1.y == c2.y);
+}

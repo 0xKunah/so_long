@@ -12,8 +12,6 @@
 
 #include "../include/so_long.h"
 #include "../include/assets_path.h"
-#include "../slx/include/slx.h"
-#include "../libft/includes/memory.h"
 
 int	is_wall(t_game game, int i, int j)
 {
@@ -104,9 +102,6 @@ void	draw_map(t_game game)
 				draw_floor(game, i, j);
 				if (game.map[i][j] == 'C')
 					slx_display_xpm(COLLECTIBLE,
-						j * ASSET_SIZE, i * ASSET_SIZE);
-				else if (game.map[i][j] == 'E')
-					slx_display_xpm(LITTLE_HOLE,
 						j * ASSET_SIZE, i * ASSET_SIZE);
 			}
 			j++;
