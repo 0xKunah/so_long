@@ -6,7 +6,7 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 13:27:00 by dbiguene          #+#    #+#             */
-/*   Updated: 2023/01/10 17:35:46 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2023/01/11 12:15:37 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,4 @@ void	on_move(t_game *game)
 	}
 	game->moves_count++;
 	ft_printf("Moves: %d\n", game->moves_count);
-	ft_printf("Collectibles: %d\n", game->collectibles);
 }

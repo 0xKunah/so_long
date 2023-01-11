@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   slx.h                                              :+:      :+:    :+:   */
+/*   print_error.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/15 12:05:37 by dbiguene          #+#    #+#             */
-/*   Updated: 2022/12/16 14:06:04 by dbiguene         ###   ########lyon.fr   */
+/*   Created: 2023/01/11 12:27:55 by dbiguene          #+#    #+#             */
+/*   Updated: 2023/01/11 12:31:24 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SLX_H
-# define SLX_H
-# include "../mlx/macos/mlx.h"
-# include "types.h"
-# include "coords.h"
-# include "hook.h"
-# include "images.h"
+#include "../libft/includes/io.h"
+#include <stdlib.h>
 
-void			slx_init(int width, int height, char *name);
-t_slx_instance	*slx_get_instance(void);
-void			slx_loop(void);
-void			slx_loop_hook(int (*handler)(int));
-void			slx_kill(void);
-
-#endif
+void	print_error(char *str)
+{
+	ft_printf("\033[1;31m %s\033[1;00m", str);
+	exit(1);
+}

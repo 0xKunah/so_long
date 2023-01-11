@@ -6,7 +6,7 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:52:19 by dbiguene          #+#    #+#             */
-/*   Updated: 2023/01/05 15:55:20 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2023/01/11 12:26:28 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@
 
 t_game			parse_map(char *path);
 t_slx_coords	get_pos(t_game game, char c);
+void			print_error(char *str);
 #endif

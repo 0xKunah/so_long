@@ -6,7 +6,7 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 15:45:00 by dbiguene          #+#    #+#             */
-/*   Updated: 2023/01/06 15:45:00 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2023/01/11 12:14:24 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ int	close_hook(void)
 
 void	slx_hook(int (*handler)(int))
 {
-	mlx_hook(slx_get_instance().win, ON_KEYDOWN, 2, &key_down, handler);
-	mlx_hook(slx_get_instance().win, ON_DESTROY, 0, &close_hook, NULL);
+	mlx_hook(slx_get_instance()->win, ON_KEYDOWN, 2, &key_down, handler);
+	mlx_hook(slx_get_instance()->win, ON_DESTROY, 0, &close_hook, NULL);
 }

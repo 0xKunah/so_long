@@ -6,7 +6,7 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:52:08 by dbiguene          #+#    #+#             */
-/*   Updated: 2023/01/05 15:55:31 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2023/01/11 12:30:34 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,7 @@ int	main(int argc, char **argv)
 	t_game	*game;
 
 	if (argc == 1)
-	{
-		ft_printf("\033[1;31m [map_error]: No map given\033[1;00m");
-		exit(1);
-	}
+		print_error(" [map_error]: No map given");
 	game = get_game_instance();
 	*game = parse_map(argv[1]);
 	check_map_validity(game->map);
@@ -101,6 +98,8 @@ int	main(int argc, char **argv)
 	game->player.pos = get_pos(*game, 'P');
 	game->player.peds = load_peds();
 	game->collectibles = count_collectibles(*game);
+	if (game->collectibles == -1)
+		print_error(" [map_error]: Multiple exits or players");
 	game->moves_count = 0;
 	game->end_pos = get_pos(*game, 'E');
 	display_player(*game, game->player.peds.front);

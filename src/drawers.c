@@ -6,7 +6,7 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 12:49:50 by dbiguene          #+#    #+#             */
-/*   Updated: 2023/01/05 13:57:56 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2023/01/11 12:42:43 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	draw_floor(t_game game, int i, int j)
 {
 	if (is_wall(game, i - 1, j) && is_wall(game, i, j))
 		slx_display_xpm(FLOOR_CRACK_TL, j * ASSET_SIZE, i * ASSET_SIZE);
-	else if (is_wall(game, i - 1, j)
+	else if (i == 1
 		&& !(i - 1 > 0 && i - 1 < game.map_size.y - 1
 			&& j - 1 > 0 && j - 1 < game.map_size.x - 1))
 		slx_display_xpm(FLOOR_CRACK_T, j * ASSET_SIZE, i * ASSET_SIZE);

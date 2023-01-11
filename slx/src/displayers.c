@@ -6,7 +6,7 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 12:13:17 by dbiguene          #+#    #+#             */
-/*   Updated: 2022/12/16 14:05:36 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2023/01/11 12:14:07 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	slx_display_image(void *img, t_slx_coords coords)
 {
-	mlx_put_image_to_window(slx_get_instance().mlx, slx_get_instance().win,
+	mlx_put_image_to_window(slx_get_instance()->mlx, slx_get_instance()->win,
 		img, coords.x, coords.y);
 }
 

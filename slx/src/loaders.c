@@ -6,7 +6,7 @@
 /*   By: dbiguene <dbiguene@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 12:16:38 by dbiguene          #+#    #+#             */
-/*   Updated: 2023/01/05 12:39:21 by dbiguene         ###   ########lyon.fr   */
+/*   Updated: 2023/01/11 12:14:43 by dbiguene         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static t_slx_image	slx_load_image(char *name)
 	t_slx_file	*head;
 
 	head = malloc(sizeof(t_slx_file));
-	head->content.data = mlx_xpm_file_to_image(slx_get_instance().mlx, name,
+	head->content.data = mlx_xpm_file_to_image(slx_get_instance()->mlx, name,
 			&(head->content.width), &(head->content.height));
 	head->name = ft_strdup(name);
 	head->next = *slx_get_loaded_files();
@@ -80,7 +80,7 @@ void	slx_destroy_images(void)
 	while (file)
 	{
 		free(file->name);
-		mlx_destroy_image(slx_get_instance().mlx, file->content.data);
+		mlx_destroy_image(slx_get_instance()->mlx, file->content.data);
 		tmp = file->next;
 		free(file);
 		file = tmp;
