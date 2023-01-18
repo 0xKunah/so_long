@@ -12,7 +12,7 @@
 		<li><a href="#issues">Issues</a></li>
 	</ul>
 	<h2 id="resume">Resume</h2>
-	<p>get_next_line is a 2D game mad using C and 42 MLX</p>
+	<p>so_long is a 2D game mad using C and 42 MLX</p>
 	<h2 id="issues">Issues</h2>
 	<p>If you find a bug or encounter an issue using this funciton, feel free to open a issue, or a pull request if you know ho to fix it</p>
 </body>
